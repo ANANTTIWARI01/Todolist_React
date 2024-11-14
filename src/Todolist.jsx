@@ -9,23 +9,11 @@ function Todolist() {
   const [Tasks, setTask] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [changedObjectId, setChangedObjectId] = useState(null);
-  // const [checkBox, setCheckBox]=useState(false)
-
-  // let flag = false;
-
-  // let changedObjectId = null;
-  // let isEditing = false;
 
   function trial() {
-    // console.log(tre)
 
     if (isEditing) {
-      // Tasks.map((obj) => {
-      //   if (obj.id === changedObjectId) {
-      //     obj.task = input;
-      //   }
-      //   return obj;
-      // });
+
       setTask(
         Tasks.map((obj) =>
           obj.id === changedObjectId ? { ...obj, task: input } : obj
@@ -40,7 +28,7 @@ function Todolist() {
   }
 
   function addTask() {
-    const Obj = { id: Date.now(), task: input,isChecked:false };
+    const Obj = { id: Date.now(), task: input, isChecked: false };
     setTask([...Tasks, Obj]);
     setInput("");
   }
@@ -75,17 +63,17 @@ function Todolist() {
         {Tasks.map((obj) => {
           return (
             <li key={obj.id}>
-               <input
-              type="checkbox"
-              checked={obj.isChecked}
-              onChange={()=>toggleCheckbox(obj.id)} 
-            />
+              <input
+                type="checkbox"
+                checked={obj.isChecked}
+                onChange={() => toggleCheckbox(obj.id)}
+              />
               {obj.task}
-              <MdDelete onClick={() => Delete(obj.id)} 
-                style={{ pointerEvents: obj.isChecked ? 'none' : 'auto', opacity: obj.isChecked ? 0.5 : 1 }}/>
+              <MdDelete onClick={() => Delete(obj.id)}
+                style={{ pointerEvents: obj.isChecked ? 'none' : 'auto', opacity: obj.isChecked ? 0.5 : 1 }} />
               <MdModeEditOutline onClick={() => Edit(obj)}
-              style={{ pointerEvents: obj.isChecked ? 'none' : 'auto', opacity: obj.isChecked ? 0.5 : 1 }}
-               />
+                style={{ pointerEvents: obj.isChecked ? 'none' : 'auto', opacity: obj.isChecked ? 0.5 : 1 }}
+              />
             </li>
           );
         })}
